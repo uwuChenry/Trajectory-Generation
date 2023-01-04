@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 namespace wpi {
@@ -76,7 +76,7 @@ class InterpolatingMap {
 }  // namespace wpi
 
 wpi::InterpolatingMap<double, double> velMap;
-
+                                                    
 struct TrajectoryPoint{
     double position, velocity, acceleration, time;
 };
@@ -87,11 +87,14 @@ struct VelocityLimit{
 
 const double MAX_VELOCITY = 4.5;
 const double MAX_ACCELERATION = 9;
-const double MAX_DECELERATION = 4.5;
+const double MAX_DECELERATION = 9;
 
 wpi::InterpolatingMap<double, double> generateProfile(double distance, double startVel = 0, double endVel = 0, std::vector<VelocityLimit> limit = {}){
     std::vector<TrajectoryPoint> profile;
     for(double i = 0; i <= distance; i += 0.01){
+        TrajectoryPoint thing;
+        thing.position = i;
+        thing.velocity = MAX_VELOCITY;
         profile.push_back(TrajectoryPoint{.position = i, .velocity = MAX_VELOCITY});
     }
 
